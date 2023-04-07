@@ -32,14 +32,14 @@ public class JCloudsSlaveTemplateTest {
         final List<JCloudsSlaveTemplate> templates = new ArrayList<>();
         templates.add(beforeTemplate);
 
-        final JCloudsCloud beforeCloud = new JCloudsCloud("aws-profile",
+        final JCloudsCloud beforeCloud = new JCloudsCloud("jclouds-aws","aws-profile",
                 "aws-ec2", "cloudCredentialsId", "cloudGlobalKeyId",
                 "http://localhost", 1, 30, 5, 600 * 1000, 600 * 1000, null, "foobar", true, templates);
 
         j.jenkins.clouds.add(beforeCloud);
         j.submit(j.createWebClient().goTo("configure").getFormByName("config"));
 
-        final JCloudsCloud afterCloud = JCloudsCloud.getByName("aws-profile");
+        final JCloudsCloud afterCloud = JCloudsCloud.getByName("jclouds-aws");
         final JCloudsSlaveTemplate afterTemplate = afterCloud.getTemplate(name);
 
         j.assertEqualBeans(beforeCloud, afterCloud,

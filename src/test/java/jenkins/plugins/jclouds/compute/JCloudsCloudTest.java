@@ -31,7 +31,7 @@ public class JCloudsCloudTest {
 
     @Test
     public void testConfigurationUI() throws Exception {
-        JCloudsCloud cloud = new JCloudsCloud("aws-profile", "aws-ec2", "",
+        JCloudsCloud cloud = new JCloudsCloud("jclouds-aws","aws-profile", "aws-ec2", "",
                 "", "http://localhost", 1, CloudInstanceDefaults.DEFAULT_INSTANCE_RETENTION_TIME_IN_MINUTES,
                 CloudInstanceDefaults.DEFAULT_ERROR_RETENTION_TIME_IN_MINUTES, 600 * 1000, 600 * 1000, null,
                 "foobar", true, Collections.<JCloudsSlaveTemplate>emptyList());
@@ -60,7 +60,7 @@ public class JCloudsCloudTest {
     @Test
     public void testConfigRoundtrip() throws Exception {
 
-        JCloudsCloud original = new JCloudsCloud("aws-profile", "aws-ec2", "",
+        JCloudsCloud original = new JCloudsCloud("jclouds-aws","aws-profile", "aws-ec2", "",
                 "", "http://localhost", 1, CloudInstanceDefaults.DEFAULT_INSTANCE_RETENTION_TIME_IN_MINUTES,
                  CloudInstanceDefaults.DEFAULT_ERROR_RETENTION_TIME_IN_MINUTES, 600 * 1000, 600 * 1000, null,
                  "foobar", true, Collections.<JCloudsSlaveTemplate>emptyList());
@@ -68,11 +68,11 @@ public class JCloudsCloudTest {
         j.getInstance().clouds.add(original);
         j.submit(j.createWebClient().goTo("configure").getFormByName("config"));
 
-        j.assertEqualBeans(original, j.getInstance().clouds.getByName("aws-profile"),
-                "profile,providerName,cloudCredentialsId,cloudGlobalKeyId,endPointUrl,instanceCap,retentionTime,groupPrefix");
+        j.assertEqualBeans(original, j.getInstance().clouds.getByName("jclouds-aws"),
+                "name,profile,providerName,cloudCredentialsId,cloudGlobalKeyId,endPointUrl,instanceCap,retentionTime,groupPrefix");
 
-        j.assertEqualBeans(original, JCloudsCloud.getByName("aws-profile"),
-                "profile,providerName,cloudCredentialsId,cloudGlobalKeyId,endPointUrl,instanceCap,retentionTime,groupPrefix");
+        j.assertEqualBeans(original, JCloudsCloud.getByName("jclouds-aws"),
+                "name,profile,providerName,cloudCredentialsId,cloudGlobalKeyId,endPointUrl,instanceCap,retentionTime,groupPrefix");
     }
 
 }

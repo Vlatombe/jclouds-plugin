@@ -31,7 +31,7 @@ public class JCloudsCloudInsideJenkinsLiveTest {
         generatedKeys = SshKeys.generate();
 
         // TODO: this may need to vary per test
-        cloud = new JCloudsCloud(fixture.getProvider() + "-profile", fixture.getProvider(), fixture.getCredentialsId(),
+        cloud = new JCloudsCloud("jclouds-" + fixture.getProvider(), fixture.getProvider() + "-profile", fixture.getProvider(), fixture.getCredentialsId(),
                 null, fixture.getEndpoint(), 1, CloudInstanceDefaults.DEFAULT_INSTANCE_RETENTION_TIME_IN_MINUTES,
                 CloudInstanceDefaults.DEFAULT_ERROR_RETENTION_TIME_IN_MINUTES, 600 * 1000, 600 * 1000,
                 null, "foobar", true, Collections.<JCloudsSlaveTemplate>emptyList());

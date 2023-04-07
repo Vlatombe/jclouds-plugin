@@ -239,10 +239,10 @@ public class JCloudsCloud extends Cloud {
     }
 
     @DataBoundConstructor
-    public JCloudsCloud(final String profile, final String providerName, final String cloudCredentialsId, final String cloudGlobalKeyId,
+    public JCloudsCloud(final String name, final String profile, final String providerName, final String cloudCredentialsId, final String cloudGlobalKeyId,
             final String endPointUrl, final int instanceCap, final int retentionTime, final int errorRetentionTime, final int scriptTimeout,
             final int startTimeout, final String zones, final String groupPrefix, final boolean trustAll, final List<JCloudsSlaveTemplate> templates) {
-        super(Util.fixEmptyAndTrim(profile));
+        super(Util.fixEmpty(name));
         this.profile = Util.fixEmptyAndTrim(profile);
         this.providerName = Util.fixEmptyAndTrim(providerName);
         this.identity = null; // Not used anymore, but retained for backward compatibility.
